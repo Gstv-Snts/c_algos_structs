@@ -1,0 +1,3 @@
+/home/gustavo/Documents/c/CMakeFiles/app.dir
+/home/gustavo/Documents/c/CMakeFiles/edit_cache.dir
+/home/gustavo/Documents/c/CMakeFiles/rebuild_cache.dir
