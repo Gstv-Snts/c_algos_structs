@@ -1,12 +1,10 @@
 CC = g++
-CCFLAGS = -Iinclude -std=c++17 -Wall
-RUN = build/main
-TEST = build/test
-SRC_DIR = src/
-ALGOS_DIR = src/algos/
-STRUCTS_DIR = src/structs/
-BUILD_DIR = build/
-TEST_DIR = tests/
+CCFLAGS = -Iinclude -std=c++20 -Wall
+RUN = build/src
+TEST = build/tests
+SOURCES := $(shell find src/ -name '*.cpp')
+TESTS := $(shell find tests/ -name '*.cpp')
+
 
 @$(BUILD_DIR):
 	@if [ ! -d $(BUILD_DIR) ]; then \
@@ -17,10 +15,7 @@ TEST_DIR = tests/
 
 run:
 	@make --no-print-directory
-	@$(CC) $(CCFLAGS) \
-		$(SRC_DIR)*.c \
-		$(ALGOS_DIR)*.c \
-		-o $(RUN)
+	@$(CC)  $(CCFLAGS) cmd/main.cpp $(SOURCES) -o $(RUN)
 	@echo "############" 
 	@echo ""
 	@./$(RUN)
@@ -30,10 +25,7 @@ run:
 
 test:
 	@make --no-print-directory
-	@$(CC) $(CCFLAGS) \
-		$(TEST_DIR)*.c \
-		$(ALGOS_DIR)*.c \
-		-o $(TEST)
+	@$(CC) $(CCFLAGS) $(TESTS) $(SOURCES) -o $(TEST)
 	@echo "############" 
 	@echo ""
 	@./$(TEST)
@@ -43,9 +35,9 @@ test:
 
 debug_test:
 	@make --no-print-directory
-	@$(CC) -Wall $(TEST_DIR)*.c \
-		$(ALGOS_DIR)*.c \
-		$(STRUCTS_DIR)*.c \
+	@$(CC) -Wall $(TEST_DIR)*.cpp \
+		$(ALGOS_DIR)*.cpp \
+		$(STRUCTS_DIR)*.cpp \
 		-o $(TEST)
 	@echo "############" 
 	@echo ""
@@ -57,8 +49,8 @@ debug_test:
 debug_run:
 	@make --no-print-directory
 	@$(CC) -Wall \
-		$(SRC_DIR)*.c \
-		$(ALGOS_DIR)*.c \
+		$(SRC_DIR)*.cpp \
+		$(ALGOS_DIR)*.cpp \
 		-o $(RUN)
 	@echo "############" 
 	@echo ""
