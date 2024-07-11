@@ -1,4 +1,5 @@
-CC = gcc
+CC = g++
+CCFLAGS = -Iinclude -std=c++17 -Wall
 RUN = build/main
 TEST = build/test
 SRC_DIR = src/
@@ -16,7 +17,7 @@ TEST_DIR = tests/
 
 run:
 	@make --no-print-directory
-	@$(CC) -Wall \
+	@$(CC) $(CCFLAGS) \
 		$(SRC_DIR)*.c \
 		$(ALGOS_DIR)*.c \
 		-o $(RUN)
@@ -29,7 +30,8 @@ run:
 
 test:
 	@make --no-print-directory
-	@$(CC) -Wall $(TEST_DIR)*.c \
+	@$(CC) $(CCFLAGS) \
+		$(TEST_DIR)*.c \
 		$(ALGOS_DIR)*.c \
 		-o $(TEST)
 	@echo "############" 

@@ -1,3 +1,4 @@
+#include "algos/sum.h"
 /*
  * @brief adds 2 number toghether
  * @param1 first number

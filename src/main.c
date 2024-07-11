@@ -1,5 +1,5 @@
-#include "../include/sum.h"
-#include "stdio.h"
+#include "algos/sum.h"
+#include <stdio.h>
 
 /**
  * main - Entry point
