@@ -7,10 +7,15 @@ TESTS := $(shell find tests/ -name '*.cpp')
 
 
 @$(BUILD_DIR):
-	@if [ ! -d $(BUILD_DIR) ]; then \
-		echo "Creating $(BUILD_DIR)."; \
+	@if [ ! -d build/ ]; then \
+		echo "Creating build/"; \
 		mkdir -p build/; \
-		echo "$(BUILD_DIR) created."; \
+		echo "buid/ created"; \
+	fi 
+	@if [ ! -f compile_commands.json ]; then \
+		echo "Creating compile_commands.json"; \
+		echo '[{"directory": "$(shell pwd)","command": "clang++ -I./include","file": ""},]' > compile_commands.json; \
+		echo "compile_commands.json created."; \
 	fi 
 
 run:
@@ -60,6 +65,7 @@ debug_run:
 	@echo "############" 
 
 clean:
-	rm -r $(BUILD_DIR)
+	sudo rm -r build/
+	sudo rm -r compile_commands.json
 
 .PHONY: all clean
