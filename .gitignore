@@ -1,4 +1,6 @@
 compile_commands.json
+libs
+build
 # Prerequisites
 *.d
 

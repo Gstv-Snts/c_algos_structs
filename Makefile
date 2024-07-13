@@ -1,36 +1,21 @@
-CC = g++
-CCFLAGS = -Iinclude -std=c++20 -Wall
+CC = gcc
+CCFLAGS = -Iinclude -Wall
 RUN = build/src
 TEST = build/tests
-SOURCES := $(shell find src/ -name '*.cpp')
-TESTS := $(shell find tests/ -name '*.cpp')
+SOURCES := $(shell find src/ -name '*.c')
+TESTS := $(shell find tests/ -name '*.c')
 
 
-@$(BUILD_DIR):
-	@if [ ! -d build/ ]; then \
+@make:
+	if [ ! -d build/ ]; then \
 		echo "Creating build/"; \
-		mkdir -p build/; \
+		mkdir -p build/ && cd build/ && cmake .. && mv compile_commands.json ..; \
 		echo "buid/ created"; \
 	fi 
-	@if [ ! -f compile_commands.json ]; then \
-		echo "Creating compile_commands.json"; \
-		echo '[{"directory": "$(shell pwd)","command": "clang++ -I./include","file": ""},]' > compile_commands.json; \
-		echo "compile_commands.json created."; \
-	fi 
-
-run:
-	@make --no-print-directory
-	@$(CC)  $(CCFLAGS) cmd/main.cpp $(SOURCES) -o $(RUN)
-	@echo "############" 
-	@echo ""
-	@./$(RUN)
-	@echo ""
-	@echo ""
-	@echo "############" 
 
 test:
 	@make --no-print-directory
-	@$(CC) $(CCFLAGS) $(TESTS) $(SOURCES) -o $(TEST)
+	@cd build/ && make
 	@echo "############" 
 	@echo ""
 	@./$(TEST)
@@ -40,10 +25,6 @@ test:
 
 debug_test:
 	@make --no-print-directory
-	@$(CC) -Wall $(TEST_DIR)*.cpp \
-		$(ALGOS_DIR)*.cpp \
-		$(STRUCTS_DIR)*.cpp \
-		-o $(TEST)
 	@echo "############" 
 	@echo ""
 	@gdb ./$(TEST)
@@ -51,21 +32,9 @@ debug_test:
 	@echo ""
 	@echo "############" 
 
-debug_run:
-	@make --no-print-directory
-	@$(CC) -Wall \
-		$(SRC_DIR)*.cpp \
-		$(ALGOS_DIR)*.cpp \
-		-o $(RUN)
-	@echo "############" 
-	@echo ""
-	@gdb ./$(RUN)
-	@echo ""
-	@echo ""
-	@echo "############" 
-
 clean:
-	sudo rm -r build/
-	sudo rm -r compile_commands.json
+	@sudo rm -r build/ 
+	@sudo rm -r compile_commands.json
+	@sudo rm -r libs/
 
 .PHONY: all clean
