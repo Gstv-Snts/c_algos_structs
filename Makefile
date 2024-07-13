@@ -25,11 +25,12 @@ test:
 
 cov:
 	@make --no-print-directory
-	@cd build/ && make
-	@lcov --capture --directory . --output-file coverage.info
-	@lcov --remove coverage.info '*/libs/*' '*/tests/*' --output-file coverage.info
-	@genhtml coverage.info --output-directory out
-	@cd out/ && google-chrome index.html
+	cd build/ && make
+	cd build/ && ctest
+	cd build/ && lcov --capture --directory . --output-file coverage.info
+	cd build/ && lcov --remove coverage.info '*/libs/*' '*/tests/*' --output-file coverage.info
+	cd build/ && genhtml coverage.info --output-directory out
+	cd build/ && cd out/ && google-chrome index.html
 
 debug_test:
 	@make --no-print-directory

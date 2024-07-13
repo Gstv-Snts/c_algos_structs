@@ -1,7 +1,7 @@
 #ifndef SUM_H
 #define SUM_H
 /*
- * @brief adds 2 number toghether
+ * @brief adds 2 number toguether
  * @param1 first number
  * @param2 second number
  */
