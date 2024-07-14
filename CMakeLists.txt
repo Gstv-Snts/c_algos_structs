@@ -14,6 +14,7 @@ include_directories(libs/Unity/src)
 file(GLOB_RECURSE SOURCE_FILES src/*.c)
 file(GLOB_RECURSE TESTS_FILES tests/*.c)
 
+add_executable(main cmd/main.c ${SOURCE_FILES})
 add_executable(tests ${TESTS_FILES} ${SOURCE_FILES})
 add_library(Unity STATIC libs/Unity/src/unity.c)
 
