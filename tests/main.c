@@ -10,6 +10,7 @@ void test_sum(void);
 void test_array(void);
 void test_bit_array(void);
 void test_bubble_sort(void);
+void test_linear_search(void);
 
 int main(void) {
   UNITY_BEGIN();
@@ -17,5 +18,6 @@ int main(void) {
   RUN_TEST(test_array);
   RUN_TEST(test_bit_array);
   RUN_TEST(test_bubble_sort);
+  RUN_TEST(test_linear_search);
   return UNITY_END();
 }
