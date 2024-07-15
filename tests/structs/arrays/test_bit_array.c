@@ -1,8 +1,7 @@
-#include "structs/arrays/bit_array.h"
-
 #include <stdint.h>
 #include <sys/types.h>
 
+#include "structs/arrays/bit_array.h"
 #include "unity.h"
 
 u_int8_t ba[8];
