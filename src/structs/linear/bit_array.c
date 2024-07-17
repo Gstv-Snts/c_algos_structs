@@ -1,4 +1,4 @@
-#include "structs/arrays/bit_array.h"
+#include "structs/linear/bit_array.h"
 
 #include <sys/types.h>
 

@@ -1,6 +1,7 @@
 CC = gcc
 CCFLAGS = -Iinclude -Wall
 SOURCES := $(shell find src/ -name '*.c')
+HEADERS := $(shell find include/ -name '*.h')
 TESTS := $(shell find tests/ -name '*.c')
 
 
@@ -41,15 +42,17 @@ cov:
 
 debug_test:
 	@make --no-print-directory
+	@cd build/ && make
 	@echo "############" 
 	@echo ""
-	@gdb ./build/test
+	@gdb ./build/tests
 	@echo ""
 	@echo ""
 	@echo "############" 
 
 debug_run:
 	@make --no-print-directory
+	@cd build/ && make
 	@echo "############" 
 	@echo ""
 	@gdb ./build/main

@@ -9,5 +9,6 @@ void test_naive(void) {
   setUpNaive();
   TEST_ASSERT_EQUAL(naive("hello test test apple test", "apple"), 16);
   TEST_ASSERT_EQUAL(naive("hello avocado test apple test", "avocado"), 6);
+  TEST_ASSERT_EQUAL(naive("hello avocado test apple test", "banana"), -1);
   tearDownNaive();
 }

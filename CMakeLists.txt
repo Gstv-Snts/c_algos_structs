@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD_REQUIRED true)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLGAS} --coverage")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include)
 include_directories(libs/Unity/src)
