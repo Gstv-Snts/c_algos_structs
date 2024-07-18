@@ -13,6 +13,7 @@ void test_bubble_sort(void);
 void test_linear_search(void);
 void test_naive(void);
 void test_linked_list(void);
+void test_greedy_knapsack(void);
 
 int main(void) {
   UNITY_BEGIN();
@@ -23,5 +24,6 @@ int main(void) {
   RUN_TEST(test_linear_search);
   RUN_TEST(test_naive);
   RUN_TEST(test_linked_list);
+  RUN_TEST(test_greedy_knapsack);
   return UNITY_END();
 }
