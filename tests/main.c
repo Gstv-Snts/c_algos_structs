@@ -14,6 +14,7 @@ void test_linear_search(void);
 void test_naive(void);
 void test_linked_list(void);
 void test_greedy_knapsack(void);
+void test_queue(void);
 
 int main(void) {
   UNITY_BEGIN();
@@ -25,5 +26,6 @@ int main(void) {
   RUN_TEST(test_naive);
   RUN_TEST(test_linked_list);
   RUN_TEST(test_greedy_knapsack);
+  RUN_TEST(test_queue);
   return UNITY_END();
 }

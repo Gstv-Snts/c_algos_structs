@@ -4,22 +4,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-struct node_s* peak_head(struct linked_list_s* ll) {
+struct linked_list_node_s* peak_head(struct linked_list_s* ll) {
   if (ll->head) {
     return ll->head;
   };
   return NULL;
 };
 
-struct node_s* peak_tail(struct linked_list_s* ll) {
+struct linked_list_node_s* peak_tail(struct linked_list_s* ll) {
   if (ll->tail) {
     return ll->tail;
   };
   return NULL;
 };
 
-struct node_s* find(struct linked_list_s* ll, int target) {
-  struct node_s* curr = ll->head;
+struct linked_list_node_s* find(struct linked_list_s* ll, int target) {
+  struct linked_list_node_s* curr = ll->head;
   for (int i = 0; i < ll->length; i++) {
     if (curr->value == target) {
       return curr;
@@ -30,7 +30,7 @@ struct node_s* find(struct linked_list_s* ll, int target) {
 };
 
 void push_head(struct linked_list_s* ll, int value) {
-  struct node_s* new_node = malloc(sizeof(struct node_s));
+  struct linked_list_node_s* new_node = malloc(sizeof(struct linked_list_node_s));
   new_node->value = value;
   if (ll->length == 0) {
     ll->head = new_node;
@@ -48,7 +48,7 @@ void push_head(struct linked_list_s* ll, int value) {
 };
 
 void push_tail(struct linked_list_s* ll, int value) {
-  struct node_s* new_node = malloc(sizeof(struct node_s));
+  struct linked_list_node_s* new_node = malloc(sizeof(struct linked_list_node_s));
   new_node->value = value;
   if (ll->length == 0) {
     ll->head = new_node;
@@ -65,11 +65,11 @@ void push_tail(struct linked_list_s* ll, int value) {
   ll->length++;
 };
 
-struct node_s* pop_head(struct linked_list_s* ll) {
+struct linked_list_node_s* pop_head(struct linked_list_s* ll) {
   if (ll->length == 0) {
     return NULL;
   } else if (ll->length == 1) {
-    struct node_s* tmp = ll->head;
+    struct linked_list_node_s* tmp = ll->head;
     tmp->next = NULL;
     tmp->previous = NULL;
     ll->head = NULL;
@@ -77,7 +77,7 @@ struct node_s* pop_head(struct linked_list_s* ll) {
     ll->length--;
     return tmp;
   } else {
-    struct node_s* tmp = ll->head;
+    struct linked_list_node_s* tmp = ll->head;
     ll->head = tmp->next;
     tmp->next = NULL;
     tmp->previous = NULL;
@@ -86,11 +86,11 @@ struct node_s* pop_head(struct linked_list_s* ll) {
   }
 }
 
-struct node_s* pop_tail(struct linked_list_s* ll) {
+struct linked_list_node_s* pop_tail(struct linked_list_s* ll) {
   if (ll->length == 0) {
     return NULL;
   } else if (ll->length == 1) {
-    struct node_s* tmp = ll->tail;
+    struct linked_list_node_s* tmp = ll->tail;
     tmp->next = NULL;
     tmp->previous = NULL;
     ll->head = NULL;
@@ -98,7 +98,7 @@ struct node_s* pop_tail(struct linked_list_s* ll) {
     ll->length--;
     return tmp;
   } else {
-    struct node_s* tmp = ll->tail;
+    struct linked_list_node_s* tmp = ll->tail;
     ll->tail = tmp->previous;
     tmp->next = NULL;
     tmp->previous = NULL;
