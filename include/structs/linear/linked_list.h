@@ -8,7 +8,7 @@
  * @field3: The previoues node on the list.
  */
 struct linked_list_node_s {
-  int value;
+  int* value;
   struct linked_list_node_s* next;
   struct linked_list_node_s* previous;
 };
@@ -28,26 +28,26 @@ struct linked_list_s {
 // get
 
 // @return: Returns the heads pointer if exists, returns NULL if not.
-struct linked_list_node_s* peak_head(struct linked_list_s* ll);
+int* peak_head(struct linked_list_s* ll);
 // @return: Returns the tails pointer if exists, returns NULL if not.
-struct linked_list_node_s* peak_tail(struct linked_list_s* ll);
+int* peak_tail(struct linked_list_s* ll);
 // @return: Returns the targets pointer if exists, returns NULL if not.
-struct linked_list_node_s* find(struct linked_list_s* ll, int target);
+int* find(struct linked_list_s* ll, int* target);
 // @brief: Prints all the nods on the list.
 void print_all(struct linked_list_s ll);
 
 // insert
 
 // @brief: Inserts a node on the start of the list.
-void push_head(struct linked_list_s* ll, int value);
+void push_head(struct linked_list_s* ll, int* value);
 // @brief: Inserts a node on the end of the list.
-void push_tail(struct linked_list_s* ll, int value);
+void push_tail(struct linked_list_s* ll, int* value);
 
 // delete
 
 // @return: Returns the popped head if it exists, returns NULL if not.
-struct linked_list_node_s* pop_head(struct linked_list_s* ll);
+int* pop_head(struct linked_list_s* ll);
 // @return: Returns the popped tail if it exists, returns NULL if not.
-struct linked_list_node_s* pop_tail(struct linked_list_s* ll);
+int* pop_tail(struct linked_list_s* ll);
 
 #endif  // DEBUG

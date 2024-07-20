@@ -1,44 +1,73 @@
 #include "structs/linear/queue.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void enqueue(struct queue_s *q, int value) {
+struct queue_s new_queue() {
+  struct queue_s q;
+  q.length = 0;
+  q.head = NULL;
+  q.tail = NULL;
+  return q;
+}
+
+void enqueue(struct queue_s *q, int *value) {
   struct queue_node_s *newNode = malloc(sizeof(struct queue_node_s));
   newNode->value = value;
   if (q->length == 0) {
     q->head = newNode;
     q->tail = newNode;
   } else if (q->length == 1) {
-    newNode->next = q->head;
+    newNode->next = q->tail;
     q->tail->previous = newNode;
     q->head = newNode;
   } else {
     newNode->next = q->head;
+    q->head->previous = newNode;
     q->head = newNode;
   }
   q->length++;
 };
 
-struct queue_node_s *dequeue(struct queue_s *q) {
+int *dequeue(struct queue_s *q) {
   if (q->length == 0) {
     return NULL;
   } else if (q->length == 1) {
-    struct queue_node_s *tmp = q->tail;
+    int *tmp = q->tail->value;
     q->tail = NULL;
     q->head = NULL;
     q->length--;
     return tmp;
   } else if (q->length == 2) {
-    struct queue_node_s *tmp = q->tail;
+    int *tmp = q->tail->value;
     q->tail = q->head;
     q->length--;
     return tmp;
   } else {
-    struct queue_node_s *tmp = q->tail;
-    q->tail = tmp->previous;
-    q->tail->next = NULL;
+    int *tmp = q->tail->value;
+    q->tail = q->tail->previous;
     q->length--;
     return tmp;
   }
 };
+
+void print_queue(struct queue_s *q) {
+  struct queue_node_s *curr = q->head;
+  printf("Head->Tail: [");
+  while (curr) {
+    printf("%d", curr->value);
+    curr = curr->next;
+  }
+  printf("]\n");
+}
+
+void print_queue_backwards(struct queue_s *q) {
+  struct queue_node_s *curr = q->tail;
+  printf("Tail->Head: [");
+  while (curr) {
+    printf("%d", curr->value);
+    curr = curr->previous;
+  }
+  printf("]\n");
+}
