@@ -1,12 +1,12 @@
 #include "structs/non_linear/binary_tree.h"
 #include "unity.h"
 
-struct binary_tree_s bt;
 void setUpBinaryTree() {};
 void tearDownBinaryTree() {};
 
 void test_binary_tree(void) {
   setUpBinaryTree();
+  struct binary_tree_s bt = new_binary_tree();
   TEST_ASSERT_EQUAL(0, bt.length);
   insert(&bt, (int*)10);
   TEST_ASSERT_EQUAL(1, bt.length);
@@ -32,8 +32,14 @@ void test_binary_tree(void) {
   insert(&bt, (int*)80);
   TEST_ASSERT_EQUAL(8, bt.length);
   TEST_ASSERT_EQUAL(80, bt.root->left->left->left->value);
+  print_binary_tree(&bt);
 
-  int* del = delete (&bt, (int*)10);
+  int* del = delete (&bt, (int*)90);
+  TEST_ASSERT_EQUAL(8, bt.length);
+  TEST_ASSERT_EQUAL(NULL, del);
+  TEST_ASSERT_EQUAL(10, bt.root->value);
+
+  del = delete (&bt, (int*)10);
   TEST_ASSERT_EQUAL(7, bt.length);
   TEST_ASSERT_EQUAL(10, del);
   TEST_ASSERT_EQUAL(70, bt.root->value);
@@ -67,6 +73,22 @@ void test_binary_tree(void) {
   TEST_ASSERT_EQUAL(0, bt.length);
   TEST_ASSERT_EQUAL(70, del);
   TEST_ASSERT_EQUAL(NULL, bt.root);
+  del = delete (&bt, (int*)70);
+  TEST_ASSERT_EQUAL(0, bt.length);
+  TEST_ASSERT_EQUAL(NULL, del);
+  TEST_ASSERT_EQUAL(NULL, bt.root);
+
+  insert(&bt, (int*)10);
+  insert(&bt, (int*)20);
+  insert(&bt, (int*)30);
+  insert(&bt, (int*)40);
+  insert(&bt, (int*)50);
+  insert(&bt, (int*)60);
+  TEST_ASSERT_EQUAL(6, bt.length);
+  del = delete (&bt, (int*)30);
+  TEST_ASSERT_EQUAL(5, bt.length);
+  TEST_ASSERT_EQUAL(30, del);
+  TEST_ASSERT_EQUAL(60, bt.root->right->value);
 
   tearDownBinaryTree();
 };

@@ -17,7 +17,6 @@ void insert(struct binary_tree_s* bt, int* value) {
     struct binary_tree_node_s* newNode = malloc(sizeof(struct binary_tree_node_s));
     newNode->value = value;
     bt->root = newNode;
-    bt->length++;
   } else {
     struct queue_s q = new_queue();
     enqueue(&q, (int*)bt->root);
@@ -27,13 +26,11 @@ void insert(struct binary_tree_s* bt, int* value) {
         struct binary_tree_node_s* newNode = malloc(sizeof(struct binary_tree_node_s));
         newNode->value = value;
         dq->left = newNode;
-        bt->length++;
         break;
       } else if (!dq->right) {
         struct binary_tree_node_s* newNode = malloc(sizeof(struct binary_tree_node_s));
         newNode->value = value;
         dq->right = newNode;
-        bt->length++;
         break;
       } else {
         enqueue(&q, (int*)dq->left);
@@ -41,6 +38,8 @@ void insert(struct binary_tree_s* bt, int* value) {
       }
     }
   }
+  bt->length++;
+  printf("Length: %d\n", bt->length);
 }
 
 int* delete_node(struct binary_tree_s* bt, struct binary_tree_node_s* btn) {

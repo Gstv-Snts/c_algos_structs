@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "structs/linear/queue.h"
 #include "unity.h"
@@ -64,6 +66,8 @@ void test_queue(void) {
   TEST_ASSERT_EQUAL(20, q.head->next->value);
   TEST_ASSERT_EQUAL(10, q.head->next->next->value);
   TEST_ASSERT_EQUAL(10, q.tail->value);
+  print_queue(&q);
+  print_queue_backwards(&q);
 
   tearDownUpQueue();
 }
