@@ -16,6 +16,7 @@ void test_linked_list(void);
 void test_greedy_knapsack(void);
 void test_queue(void);
 void test_binary_tree(void);
+void test_avl_tree(void);
 
 int main(void) {
   UNITY_BEGIN();
@@ -29,5 +30,6 @@ int main(void) {
   RUN_TEST(test_greedy_knapsack);
   RUN_TEST(test_queue);
   RUN_TEST(test_binary_tree);
+  RUN_TEST(test_avl_tree);
   return UNITY_END();
 }

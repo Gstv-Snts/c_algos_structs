@@ -39,7 +39,6 @@ void insert(struct binary_tree_s* bt, int* value) {
     }
   }
   bt->length++;
-  printf("Length: %d\n", bt->length);
 }
 
 int* delete_node(struct binary_tree_s* bt, struct binary_tree_node_s* btn) {
@@ -116,7 +115,7 @@ void print_binary_tree(struct binary_tree_s* bt) {
   struct queue_s q = new_queue();
   if (bt->root) {
     enqueue(&q, (int*)bt->root);
-    printf("Bfs: [");
+    printf("Binary Tree Bfs: [");
     while (q.length > 0) {
       struct binary_tree_node_s* dq = (struct binary_tree_node_s*)dequeue(&q);
       printf("%d,", dq->value);

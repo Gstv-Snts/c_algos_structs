@@ -54,7 +54,7 @@ int *dequeue(struct queue_s *q) {
 
 void print_queue(struct queue_s *q) {
   struct queue_node_s *curr = q->head;
-  printf("Head->Tail: [");
+  printf("Queue Head->Tail: [");
   while (curr) {
     printf("%d", curr->value);
     curr = curr->next;
@@ -64,7 +64,7 @@ void print_queue(struct queue_s *q) {
 
 void print_queue_backwards(struct queue_s *q) {
   struct queue_node_s *curr = q->tail;
-  printf("Tail->Head: [");
+  printf("Queue Tail->Head: [");
   while (curr) {
     printf("%d", curr->value);
     curr = curr->previous;
