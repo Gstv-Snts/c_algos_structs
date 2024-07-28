@@ -2,15 +2,15 @@
 
 #include <stdio.h>
 
-#include "structs/linear/linked_list.h"
+#include "structs/linear/list/linked_list.h"
 
 void print_arr(int *arr[], int length) {
   length += 1;
-  printf("[");
+  printf("Array: [ ");
   for (int i = 0; i < length; i++) {
-    printf("%d,", *(arr + i));
+    printf("%d:%d, ", i, *(arr + i));
   }
-  printf("]\n");
+  printf(" ]\n");
 }
 
 void quicksort_recurse(int *arr[], int start, int end) {

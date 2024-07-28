@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include "structs/linear/array.h"
+#include "structs/linear/array/array.h"
 #include "unity.h"
 
 static int* arr;

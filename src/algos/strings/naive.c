@@ -1,10 +1,8 @@
-#include "algos/strings/naive.h"
-
 #include <stdlib.h>
 #include <string.h>
 
 #include "stdbool.h"
-#include "structs/linear/linked_list.h"
+#include "structs/linear/list/linked_list.h"
 
 struct linked_list_s* naive(char* text, char* target) {
   bool matches = true;
@@ -16,7 +14,7 @@ struct linked_list_s* naive(char* text, char* target) {
       }
     }
     if (matches) {
-      push_tail(indexes, i);
+      push_tail(indexes, (int*)i);
     }
     matches = true;
   }

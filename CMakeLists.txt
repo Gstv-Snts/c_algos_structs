@@ -5,8 +5,8 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED true)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLGAS} --coverage")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLGAS}  --coverage -lm")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage -lm ")
 set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include)
@@ -29,6 +29,8 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Unity)
 
+target_link_libraries(tests m)
+target_link_libraries(main m)
 target_link_libraries(tests Unity)
 
 enable_testing()

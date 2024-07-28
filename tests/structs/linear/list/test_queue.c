@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "structs/linear/queue.h"
+#include "structs/linear/list/queue.h"
 #include "unity.h"
 
 void setUpQueue() {};

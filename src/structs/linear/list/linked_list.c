@@ -1,8 +1,16 @@
-#include "structs/linear/linked_list.h"
+#include "structs/linear/list/linked_list.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+struct linked_list_s* new_linked_list() {
+  struct linked_list_s* ll = malloc(sizeof(struct linked_list_s));
+  ll->length = 0;
+  ll->head = NULL;
+  ll->tail = NULL;
+  return ll;
+}
 
 int* peak_head(struct linked_list_s* ll) {
   if (ll->head) {
@@ -104,3 +112,46 @@ int* pop_tail(struct linked_list_s* ll) {
     return tmp->value;
   }
 }
+
+int* find_and_delete_linked_list(struct linked_list_s* ll, int* target) {
+  if (ll->head->value == target) {
+    return pop_head(ll);
+  }
+  if (ll->tail->value == target) {
+    return pop_tail(ll);
+  }
+  struct linked_list_node_s* curr = ll->head;
+  for (int i = 0; i < ll->length; i++) {
+    if (curr->next->value == target) {
+      int* tmp = curr->next->value;
+      curr->next = curr->next->next;
+      ll->length--;
+      return tmp;
+    }
+    curr = curr->next;
+  }
+  return NULL;
+};
+
+int* find_and_update_linked_list(struct linked_list_s* ll, int* target, int* new_value) {
+  if (ll->head->value == target) {
+    int* tmp = ll->head->value;
+    ll->head->value = new_value;
+    return tmp;
+  }
+  if (ll->tail->value == target) {
+    int* tmp = ll->tail->value;
+    ll->tail->value = new_value;
+    return tmp;
+  }
+  struct linked_list_node_s* curr = ll->head;
+  for (int i = 0; i < ll->length; i++) {
+    if (curr->value == target) {
+      int* tmp = curr->value;
+      curr->value = new_value;
+      return tmp;
+    }
+    curr = curr->next;
+  }
+  return NULL;
+};

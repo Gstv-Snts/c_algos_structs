@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "structs/linear/queue.h"
+#include "structs/linear/list/queue.h"
 
 struct avl_tree_s new_avl_tree() {
   struct avl_tree_s avl;
@@ -95,10 +95,6 @@ void avl_insert_recurse(struct avl_tree_node_s *avl_node, int *value) {
     } else {
       struct avl_tree_node_s *new_node = new_avl_tree_node(value);
       avl_node->left = new_node;
-      int bf = balance_factor(new_node);
-      if (bf < -1 || bf > 1) {
-        balance_node(new_node, bf);
-      }
     }
   } else {
     if (avl_node->right) {
@@ -106,10 +102,6 @@ void avl_insert_recurse(struct avl_tree_node_s *avl_node, int *value) {
     } else {
       struct avl_tree_node_s *new_node = new_avl_tree_node(value);
       avl_node->right = new_node;
-      int bf = balance_factor(new_node);
-      if (bf < -1 || bf > 1) {
-        balance_node(new_node, bf);
-      }
     }
   }
   int bf = balance_factor(avl_node);
@@ -124,10 +116,6 @@ void avl_insert(struct avl_tree_s *at, int *value) {
     avl_insert_recurse(at->root, value);
   } else {
     at->root = new_avl_tree_node(value);
-    int bf = balance_factor(at->root);
-    if (bf < -1 || bf > 1) {
-      balance_node(at->root, bf);
-    }
   }
   at->length++;
 }

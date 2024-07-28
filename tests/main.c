@@ -18,6 +18,7 @@ void test_queue(void);
 void test_binary_tree(void);
 void test_avl_tree(void);
 void test_quicksort(void);
+void test_hash_table(void);
 
 int main(void) {
   UNITY_BEGIN();
@@ -33,5 +34,6 @@ int main(void) {
   RUN_TEST(test_binary_tree);
   RUN_TEST(test_avl_tree);
   RUN_TEST(test_quicksort);
+  RUN_TEST(test_hash_table);
   return UNITY_END();
 }

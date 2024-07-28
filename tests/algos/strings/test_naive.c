@@ -1,5 +1,5 @@
 #include "algos/strings/naive.h"
-#include "structs/linear/linked_list.h"
+#include "structs/linear/list/linked_list.h"
 #include "unity.h"
 
 struct linked_list_s* ll_naive;

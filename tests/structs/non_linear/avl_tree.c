@@ -10,6 +10,7 @@ void tearDownAVLTree(void) {};
 void test_avl_tree(void) {
   setUpAVLTree();
   struct avl_tree_s at = new_avl_tree();
+  print_avl_tree(&at);
   TEST_ASSERT_EQUAL(0, at.length);
   TEST_ASSERT_EQUAL(NULL, at.root);
 

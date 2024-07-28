@@ -1,4 +1,4 @@
-#include "structs/linear/array.h"
+#include "structs/linear/array/array.h"
 
 int findArrayValueIndex(int *arr, int value) {
   for (int i = 0; i < sizeof(arr); i++) {

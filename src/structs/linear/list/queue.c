@@ -1,4 +1,4 @@
-#include "structs/linear/queue.h"
+#include "structs/linear/list/queue.h"
 
 #include <stdio.h>
 #include <stdlib.h>

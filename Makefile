@@ -1,10 +1,3 @@
-CC = gcc
-CCFLAGS = -Iinclude -Wall
-SOURCES := $(shell find src/ -name '*.c')
-HEADERS := $(shell find include/ -name '*.h')
-TESTS := $(shell find tests/ -name '*.c')
-
-
 @make:
 	@if [ ! -d build/ ]; then \
 		echo "Creating build/"; \

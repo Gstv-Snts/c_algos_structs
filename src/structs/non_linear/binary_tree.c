@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "structs/linear/queue.h"
+#include "structs/linear/list/queue.h"
 
 struct binary_tree_s new_binary_tree() {
   struct binary_tree_s bt;

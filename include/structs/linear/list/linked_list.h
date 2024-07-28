@@ -25,6 +25,8 @@ struct linked_list_s {
   int length;
 };
 
+struct linked_list_s* new_linked_list();
+
 // get
 
 // @return: Returns the heads pointer if exists, returns NULL if not.
@@ -49,5 +51,9 @@ void push_tail(struct linked_list_s* ll, int* value);
 int* pop_head(struct linked_list_s* ll);
 // @return: Returns the popped tail if it exists, returns NULL if not.
 int* pop_tail(struct linked_list_s* ll);
+int* find_and_delete_linked_list(struct linked_list_s* ll, int* target);
+
+// update
+int* find_and_update_linked_list(struct linked_list_s* ll, int* target, int* new_value);
 
 #endif  // DEBUG
