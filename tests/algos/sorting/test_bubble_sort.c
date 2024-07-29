@@ -12,7 +12,7 @@ void test_bubble_sort(void) {
   setUpBubbleSort();
   bubble_sort(arr, sizeof(arr) / sizeof(arr[0]));
   for (int i = 0; i < 10; i++) {
-    TEST_ASSERT_EQUAL(*(sorted_arr + i), *(arr + i));
+    TEST_ASSERT_EQUAL(sorted_arr[i], arr[i]);
   }
   tearDownBubbleSort();
 }

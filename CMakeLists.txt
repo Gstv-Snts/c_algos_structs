@@ -16,6 +16,7 @@ file(GLOB_RECURSE SOURCE_FILES src/*.c)
 file(GLOB_RECURSE TESTS_FILES tests/*.c)
 
 add_executable(main cmd/main.c ${SOURCE_FILES})
+add_executable(bench cmd/bench.c ${SOURCE_FILES})
 add_executable(tests ${TESTS_FILES} ${SOURCE_FILES})
 add_library(Unity STATIC libs/Unity/src/unity.c)
 
@@ -31,6 +32,7 @@ FetchContent_MakeAvailable(Unity)
 
 target_link_libraries(tests m)
 target_link_libraries(main m)
+target_link_libraries(bench m)
 target_link_libraries(tests Unity)
 
 enable_testing()

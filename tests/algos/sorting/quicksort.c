@@ -7,11 +7,10 @@ void tearDownQuickSort() {}
 
 void test_quicksort(void) {
   setUpQuickSort();
-  int *arr[10] = {
-      (int *)110, (int *)130, (int *)115, (int *)105, (int *)90,
-      (int *)135, (int *)10,  (int *)30,  (int *)15,  (int *)5,
+  int arr[10] = {
+      110, 130, 115, 105, 90, 135, 10, 30, 15, 5,
   };
-  quicksort((int **)arr, sizeof(arr) / sizeof(arr[0]));
+  quicksort(arr, sizeof(arr) / sizeof(arr[0]));
   TEST_ASSERT_EQUAL(5, arr[0]);
   TEST_ASSERT_EQUAL(10, arr[1]);
   TEST_ASSERT_EQUAL(15, arr[2]);

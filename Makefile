@@ -25,6 +25,16 @@ test:
 	@echo ""
 	@echo "############" 
 
+bench:
+	@make --no-print-directory
+	@cd build/ && make
+	@echo "############" 
+	@echo ""
+	@./build/bench --confidence=5
+	@echo ""
+	@echo ""
+	@echo "############" 
+
 cov:
 	@make --no-print-directory
 	@make test
