@@ -62,18 +62,21 @@ void balance_node(struct avl_tree_node_s *node, int balance_factor) {
 int height(struct avl_tree_node_s *avl_node) {
   int height = 0;
   if (avl_node) {
-    struct queue_s q = new_queue();
-    enqueue(&q, (int *)avl_node);
-    while (q.length > 0) {
-      int size = q.length;
+    struct queue_s *q = malloc(sizeof(struct queue_s));
+    q->length = 0;
+    q->head = NULL;
+    q->tail = NULL;
+    enqueue(q, (int *)avl_node);
+    while (q->length > 0) {
+      int size = q->length;
       height++;
       while (size > 0) {
-        struct avl_tree_node_s *dq = (struct avl_tree_node_s *)dequeue(&q);
+        struct avl_tree_node_s *dq = (struct avl_tree_node_s *)dequeue(q);
         if (dq->left) {
-          enqueue(&q, (int *)dq->left);
+          enqueue(q, (int *)dq->left);
         }
         if (dq->right) {
-          enqueue(&q, (int *)dq->right);
+          enqueue(q, (int *)dq->right);
         }
         size--;
       }
@@ -121,12 +124,15 @@ void avl_insert(struct avl_tree_s *at, int *value) {
 }
 
 void print_avl_tree(struct avl_tree_s *at) {
-  struct queue_s q = new_queue();
+  struct queue_s *q = malloc(sizeof(struct queue_s));
+  q->length = 0;
+  q->head = NULL;
+  q->tail = NULL;
   if (at->root) {
-    enqueue(&q, (int *)at->root);
+    enqueue(q, (int *)at->root);
     printf("Avl Bfs: [ ");
-    while (q.length > 0) {
-      struct avl_tree_node_s *dq = (struct avl_tree_node_s *)dequeue(&q);
+    while (q->length > 0) {
+      struct avl_tree_node_s *dq = (struct avl_tree_node_s *)dequeue(q);
       printf("%d[", dq->value);
       if (dq->left) {
         printf("l:%d,", dq->left->value);

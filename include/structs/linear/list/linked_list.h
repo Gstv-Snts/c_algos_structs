@@ -25,7 +25,7 @@ struct linked_list_s {
   int length;
 };
 
-struct linked_list_s* new_linked_list();
+void free_linked_list(struct linked_list_s* ll);
 
 // get
 

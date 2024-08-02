@@ -1,12 +1,18 @@
 #include "structs/linear/array/hash_table.h"
 
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "structs/linear/list/linked_list.h"
 
 void initialize_hash_table(struct linked_list_s** ht, int size) {
   for (int i = 0; i < size; i++) {
-    *(ht + i) = new_linked_list();
+    struct linked_list_s* ll = malloc(sizeof(struct linked_list_s));
+    ll->length = 0;
+    ll->head = NULL;
+    ll->tail = NULL;
+    *(ht + i) = ll;
   }
 };
 

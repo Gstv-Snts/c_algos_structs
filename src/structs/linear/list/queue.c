@@ -4,28 +4,32 @@
 #include <stdlib.h>
 #include <time.h>
 
-struct queue_s new_queue() {
-  struct queue_s q;
-  q.length = 0;
-  q.head = NULL;
-  q.tail = NULL;
-  return q;
+void free_queue(struct queue_s *q) {
+  if (q->length > 0) {
+    struct queue_node_s *curr = q->head;
+    for (int i = 0; i < q->length; i++) {
+      struct queue_node_s *tmp = curr;
+      curr = curr->next;
+      free(tmp);
+    }
+  }
+  free(q);
 }
 
 void enqueue(struct queue_s *q, int *value) {
-  struct queue_node_s *newNode = malloc(sizeof(struct queue_node_s));
-  newNode->value = value;
+  struct queue_node_s *new_node = malloc(sizeof(struct queue_node_s));
+  new_node->value = value;
   if (q->length == 0) {
-    q->head = newNode;
-    q->tail = newNode;
+    q->head = new_node;
+    q->tail = new_node;
   } else if (q->length == 1) {
-    newNode->next = q->tail;
-    q->tail->previous = newNode;
-    q->head = newNode;
+    new_node->next = q->tail;
+    q->tail->previous = new_node;
+    q->head = new_node;
   } else {
-    newNode->next = q->head;
-    q->head->previous = newNode;
-    q->head = newNode;
+    new_node->next = q->head;
+    q->head->previous = new_node;
+    q->head = new_node;
   }
   q->length++;
 };
@@ -34,40 +38,26 @@ int *dequeue(struct queue_s *q) {
   if (q->length == 0) {
     return NULL;
   } else if (q->length == 1) {
-    int *tmp = q->tail->value;
+    struct queue_node_s *tmp = q->tail;
     q->tail = NULL;
     q->head = NULL;
     q->length--;
-    return tmp;
+    int *r = tmp->value;
+    free(tmp);
+    return r;
   } else if (q->length == 2) {
-    int *tmp = q->tail->value;
+    struct queue_node_s *tmp = q->tail;
     q->tail = q->head;
     q->length--;
-    return tmp;
+    int *r = tmp->value;
+    free(tmp);
+    return r;
   } else {
-    int *tmp = q->tail->value;
+    struct queue_node_s *tmp = q->tail;
     q->tail = q->tail->previous;
     q->length--;
-    return tmp;
+    int *r = tmp->value;
+    free(tmp);
+    return r;
   }
 };
-
-void print_queue(struct queue_s *q) {
-  struct queue_node_s *curr = q->head;
-  printf("Queue Head->Tail: [");
-  while (curr) {
-    printf("%d", curr->value);
-    curr = curr->next;
-  }
-  printf("]\n");
-}
-
-void print_queue_backwards(struct queue_s *q) {
-  struct queue_node_s *curr = q->tail;
-  printf("Queue Tail->Head: [");
-  while (curr) {
-    printf("%d", curr->value);
-    curr = curr->previous;
-  }
-  printf("]\n");
-}

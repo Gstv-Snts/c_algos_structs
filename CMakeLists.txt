@@ -37,3 +37,6 @@ target_link_libraries(tests Unity)
 
 enable_testing()
 add_test(NAME tests COMMAND tests)
+add_test(NAME mem_check_tests
+         COMMAND valgrind --leak-check=full --error-exitcode=1
+                 --track-origins=yes ./tests)

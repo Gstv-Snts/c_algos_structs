@@ -16,5 +16,6 @@ void test_greedy_knapsack(void) {
   items[2].value = 120;
   items[2].weight = 30;
   TEST_ASSERT_EQUAL(220, greedy_knapsack(50, items, 3));
+  free(items);
   tearDownGreedyKnapsack();
 }

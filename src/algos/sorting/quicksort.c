@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 
-#include "structs/linear/list/linked_list.h"
-
 void print_arr(int arr[], int length) {
   length += 1;
   printf("Array: [ ");

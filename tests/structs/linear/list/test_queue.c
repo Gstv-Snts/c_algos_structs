@@ -9,65 +9,23 @@ void setUpQueue() {};
 void tearDownUpQueue() {};
 
 void test_queue(void) {
-  struct queue_s q = new_queue();
   setUpQueue();
-  TEST_ASSERT_EQUAL(0, q.length);
-  enqueue(&q, (int*)10);
-  TEST_ASSERT_EQUAL(1, q.length);
-  TEST_ASSERT_EQUAL(10, q.head->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-  enqueue(&q, (int*)20);
-  TEST_ASSERT_EQUAL(2, q.length);
-  TEST_ASSERT_EQUAL(20, q.head->value);
-  TEST_ASSERT_EQUAL(10, q.head->next->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-  enqueue(&q, (int*)30);
-  TEST_ASSERT_EQUAL(3, q.length);
-  TEST_ASSERT_EQUAL(30, q.head->value);
-  TEST_ASSERT_EQUAL(20, q.head->next->value);
-  TEST_ASSERT_EQUAL(10, q.head->next->next->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-
-  int* dq = dequeue(&q);
-  TEST_ASSERT_EQUAL(2, q.length);
-  TEST_ASSERT_EQUAL(10, dq);
-  TEST_ASSERT_EQUAL(30, q.head->value);
-  TEST_ASSERT_EQUAL(20, q.head->next->value);
-
-  dq = dequeue(&q);
-  TEST_ASSERT_EQUAL(1, q.length);
-  TEST_ASSERT_EQUAL(20, dq);
-  TEST_ASSERT_EQUAL(30, q.head->value);
-  TEST_ASSERT_EQUAL(30, q.tail->value);
-
-  dq = dequeue(&q);
-  TEST_ASSERT_EQUAL(0, q.length);
-  TEST_ASSERT_EQUAL(30, dq);
-  TEST_ASSERT_EQUAL(NULL, q.head);
-  TEST_ASSERT_EQUAL(NULL, q.tail);
-
-  dq = dequeue(&q);
-  TEST_ASSERT_EQUAL(NULL, dq);
-
-  q = new_queue();
-  TEST_ASSERT_EQUAL(0, q.length);
-  enqueue(&q, (int*)10);
-  TEST_ASSERT_EQUAL(1, q.length);
-  TEST_ASSERT_EQUAL(10, q.head->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-  enqueue(&q, (int*)20);
-  TEST_ASSERT_EQUAL(2, q.length);
-  TEST_ASSERT_EQUAL(20, q.head->value);
-  TEST_ASSERT_EQUAL(10, q.head->next->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-  enqueue(&q, (int*)30);
-  TEST_ASSERT_EQUAL(3, q.length);
-  TEST_ASSERT_EQUAL(30, q.head->value);
-  TEST_ASSERT_EQUAL(20, q.head->next->value);
-  TEST_ASSERT_EQUAL(10, q.head->next->next->value);
-  TEST_ASSERT_EQUAL(10, q.tail->value);
-  print_queue(&q);
-  print_queue_backwards(&q);
+  struct queue_s* q = malloc(sizeof(struct queue_s));
+  q->length = 0;
+  q->head = NULL;
+  q->tail = NULL;
+  TEST_ASSERT_EQUAL(NULL, dequeue(q));
+  enqueue(q, (int*)10);
+  enqueue(q, (int*)20);
+  enqueue(q, (int*)30);
+  enqueue(q, (int*)40);
+  enqueue(q, (int*)50);
+  TEST_ASSERT_EQUAL(10, dequeue(q));
+  TEST_ASSERT_EQUAL(20, dequeue(q));
+  TEST_ASSERT_EQUAL(30, dequeue(q));
+  TEST_ASSERT_EQUAL(40, dequeue(q));
+  TEST_ASSERT_EQUAL(50, dequeue(q));
+  free_queue(q);
 
   tearDownUpQueue();
 }

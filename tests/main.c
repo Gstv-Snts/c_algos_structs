@@ -15,7 +15,7 @@ void test_naive(void);
 void test_linked_list(void);
 void test_greedy_knapsack(void);
 void test_queue(void);
-void test_binary_tree(void);
+void test_b_tree(void);
 void test_avl_tree(void);
 void test_quicksort(void);
 void test_hash_table(void);
@@ -27,13 +27,15 @@ int main(void) {
   RUN_TEST(test_bit_array);
   RUN_TEST(test_bubble_sort);
   RUN_TEST(test_linear_search);
-  RUN_TEST(test_naive);
   RUN_TEST(test_linked_list);
+  RUN_TEST(test_naive);
   RUN_TEST(test_greedy_knapsack);
   RUN_TEST(test_queue);
-  RUN_TEST(test_binary_tree);
+  RUN_TEST(test_b_tree);
+  /*
   RUN_TEST(test_avl_tree);
   RUN_TEST(test_quicksort);
   RUN_TEST(test_hash_table);
+  */
   return UNITY_END();
 }

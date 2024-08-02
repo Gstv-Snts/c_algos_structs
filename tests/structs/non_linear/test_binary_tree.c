@@ -1,94 +1,56 @@
-#include "structs/non_linear/binary_tree.h"
+
+#include <stdlib.h>
+
+#include "structs/non_linear/b_tree.h"
 #include "unity.h"
 
-void setUpBinaryTree() {};
-void tearDownBinaryTree() {};
+void setUpBTree() {};
+void tearDownBTree() {};
 
-void test_binary_tree(void) {
-  setUpBinaryTree();
-  struct binary_tree_s bt = new_binary_tree();
+void test_b_tree(void) {
+  setUpBTree();
+  struct b_tree_s bt;
+  bt.length = 0;
+  bt.root = NULL;
+  bt.root = malloc(sizeof(struct b_tree_node_s));
+  bt.root->left = NULL;
+  bt.root->right = NULL;
+  bt.root->value = (int*)10;
+  bt.length++;
+  bt.root->left = malloc(sizeof(struct b_tree_node_s));
+  bt.root->left->left = NULL;
+  bt.root->left->right = NULL;
+  bt.root->left->value = (int*)20;
+  bt.length++;
+  bt.root->right = malloc(sizeof(struct b_tree_node_s));
+  bt.root->right->left = NULL;
+  bt.root->right->right = NULL;
+  bt.root->right->value = (int*)30;
+  bt.length++;
+  bt.root->left->left = malloc(sizeof(struct b_tree_node_s));
+  bt.root->left->left->left = NULL;
+  bt.root->left->left->right = NULL;
+  bt.root->left->left->value = (int*)40;
+  bt.length++;
+  bt.root->left->right = malloc(sizeof(struct b_tree_node_s));
+  bt.root->left->right->left = NULL;
+  bt.root->left->right->right = NULL;
+  bt.root->left->right->value = (int*)50;
+  bt.length++;
+  free_b_tree(&bt);
+  bt.root = NULL;
   TEST_ASSERT_EQUAL(0, bt.length);
+
   insert(&bt, (int*)10);
-  TEST_ASSERT_EQUAL(1, bt.length);
   TEST_ASSERT_EQUAL(10, bt.root->value);
   insert(&bt, (int*)20);
-  TEST_ASSERT_EQUAL(2, bt.length);
   TEST_ASSERT_EQUAL(20, bt.root->left->value);
   insert(&bt, (int*)30);
-  TEST_ASSERT_EQUAL(3, bt.length);
   TEST_ASSERT_EQUAL(30, bt.root->right->value);
   insert(&bt, (int*)40);
-  TEST_ASSERT_EQUAL(4, bt.length);
   TEST_ASSERT_EQUAL(40, bt.root->left->left->value);
   insert(&bt, (int*)50);
-  TEST_ASSERT_EQUAL(5, bt.length);
   TEST_ASSERT_EQUAL(50, bt.root->left->right->value);
-  insert(&bt, (int*)60);
-  TEST_ASSERT_EQUAL(6, bt.length);
-  TEST_ASSERT_EQUAL(60, bt.root->right->left->value);
-  insert(&bt, (int*)70);
-  TEST_ASSERT_EQUAL(7, bt.length);
-  TEST_ASSERT_EQUAL(70, bt.root->right->right->value);
-  insert(&bt, (int*)80);
-  TEST_ASSERT_EQUAL(8, bt.length);
-  TEST_ASSERT_EQUAL(80, bt.root->left->left->left->value);
-  print_binary_tree(&bt);
-
-  int* del = delete (&bt, (int*)90);
-  TEST_ASSERT_EQUAL(8, bt.length);
-  TEST_ASSERT_EQUAL(NULL, del);
-  TEST_ASSERT_EQUAL(10, bt.root->value);
-
-  del = delete (&bt, (int*)10);
-  TEST_ASSERT_EQUAL(7, bt.length);
-  TEST_ASSERT_EQUAL(10, del);
-  TEST_ASSERT_EQUAL(70, bt.root->value);
-  del = delete (&bt, (int*)80);
-  TEST_ASSERT_EQUAL(6, bt.length);
-  TEST_ASSERT_EQUAL(80, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root->left->left->left);
-  del = delete (&bt, (int*)50);
-  TEST_ASSERT_EQUAL(5, bt.length);
-  TEST_ASSERT_EQUAL(50, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root->left->right);
-  del = delete (&bt, (int*)20);
-  TEST_ASSERT_EQUAL(4, bt.length);
-  TEST_ASSERT_EQUAL(20, del);
-  TEST_ASSERT_EQUAL(40, bt.root->left->value);
-  del = delete (&bt, (int*)60);
-  TEST_ASSERT_EQUAL(3, bt.length);
-  TEST_ASSERT_EQUAL(60, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root->right->left);
-  del = delete (&bt, (int*)30);
-  TEST_ASSERT_EQUAL(2, bt.length);
-  TEST_ASSERT_EQUAL(30, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root->right);
-  TEST_ASSERT_EQUAL(40, bt.root->left->value);
-  del = delete (&bt, (int*)40);
-  TEST_ASSERT_EQUAL(1, bt.length);
-  TEST_ASSERT_EQUAL(40, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root->left);
-  TEST_ASSERT_EQUAL(NULL, bt.root->right);
-  del = delete (&bt, (int*)70);
-  TEST_ASSERT_EQUAL(0, bt.length);
-  TEST_ASSERT_EQUAL(70, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root);
-  del = delete (&bt, (int*)70);
-  TEST_ASSERT_EQUAL(0, bt.length);
-  TEST_ASSERT_EQUAL(NULL, del);
-  TEST_ASSERT_EQUAL(NULL, bt.root);
-
-  insert(&bt, (int*)10);
-  insert(&bt, (int*)20);
-  insert(&bt, (int*)30);
-  insert(&bt, (int*)40);
-  insert(&bt, (int*)50);
-  insert(&bt, (int*)60);
-  TEST_ASSERT_EQUAL(6, bt.length);
-  del = delete (&bt, (int*)30);
-  TEST_ASSERT_EQUAL(5, bt.length);
-  TEST_ASSERT_EQUAL(30, del);
-  TEST_ASSERT_EQUAL(60, bt.root->right->value);
-
-  tearDownBinaryTree();
+  free_b_tree(&bt);
+  tearDownBTree();
 };

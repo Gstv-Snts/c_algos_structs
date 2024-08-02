@@ -12,7 +12,7 @@ struct queue_s {
   int length;
 };
 
-struct queue_s new_queue();
+void free_queue(struct queue_s* q);
 
 void enqueue(struct queue_s* q, int* value);
 
